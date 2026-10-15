@@ -1,245 +1,181 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ceren Şengüler | Kişisel Çalışma & Öğrenci Alanı</title>
-  
-  <!-- Tailwind CSS & FontAwesome İkonları -->
+  <title>Ceren'in Kişisel Öğrenci Portalı</title>
+  <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    
-    /* Özel kaydırma çubuğu */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
-    ::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.4); border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.8); }
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #374151; border-radius: 9999px; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950 via-slate-950 to-black">
+<body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300">
 
-  <!-- Üst Bar / Header -->
-  <header class="border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-xl sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <!-- Üst Menü -->
+  <header class="border-b border-slate-800 bg-slate-900/60 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-pink-500 flex items-center justify-center font-extrabold text-white shadow-lg shadow-indigo-500/20">
-          CŞ
-        </div>
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-500 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/20">C</div>
         <div>
-          <h1 class="text-base font-bold text-white tracking-wide leading-none">Ceren Şengüler</h1>
-          <p class="text-xs text-indigo-400 font-medium mt-1">Öğrenci & Geliştirici Portalı</p>
+          <span class="font-bold text-base tracking-wide bg-gradient-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent">Ceren's Hub</span>
+          <span class="text-[10px] block text-slate-500 uppercase tracking-widest font-semibold">Öğrenci Portalı</span>
         </div>
       </div>
-
-      <!-- Navigasyon Sekmeleri -->
-      <nav class="flex items-center gap-1 sm:gap-2">
-        <button onclick="switchTab('dashboard')" id="btn-tab-dashboard" class="nav-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-2 bg-indigo-600 text-white shadow-md shadow-indigo-500/20">
-          <i class="fas fa-home"></i><span class="hidden sm:inline">Genel Bakış</span>
+      <div class="flex items-center space-x-3">
+        <button onclick="aiModalAc()" class="flex items-center space-x-2 bg-purple-600/20 border border-purple-500/30 hover:bg-purple-600/30 text-purple-300 text-xs px-3.5 py-2 rounded-xl transition">
+          <i class="fas fa-sparkles text-purple-400 animate-pulse"></i>
+          <span class="font-medium">AI Asistan</span>
         </button>
-        <button onclick="switchTab('schedule')" id="btn-tab-schedule" class="nav-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800">
-          <i class="fas fa-calendar-alt"></i><span class="hidden sm:inline">Ders Programı</span>
-        </button>
-        <button onclick="switchTab('notes')" id="btn-tab-notes" class="nav-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800">
-          <i class="fas fa-book-open"></i><span class="hidden sm:inline">Ders Notları</span>
-        </button>
-        <button onclick="switchTab('projects')" id="btn-tab-projects" class="nav-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800">
-          <i class="fas fa-folder-open"></i><span class="hidden sm:inline">Çalışmalarım & Dosyalar</span>
-        </button>
-      </nav>
+      </div>
     </div>
   </header>
 
-  <!-- Ana Taşıyıcı -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+  <!-- Ana Sekmeler -->
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <div class="flex border-b border-slate-800 mb-8 space-x-8">
+      <button onclick="sekmeDegistir('program')" id="tab-btn-program" class="pb-3 text-sm font-semibold border-b-2 border-purple-500 text-purple-400 transition flex items-center space-x-2">
+        <i class="fas fa-calendar-week"></i>
+        <span>Haftalık Ders Takvimi</span>
+      </button>
+      <button onclick="sekmeDegistir('notlar')" id="tab-btn-notlar" class="pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition flex items-center space-x-2">
+        <i class="fas fa-book-open"></i>
+        <span>Ders Notları</span>
+      </button>
+      <button onclick="sekmeDegistir('projeler')" id="tab-btn-projeler" class="pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition flex items-center space-x-2">
+        <i class="fas fa-folder-open"></i>
+        <span>Çalışmalarım & Dosyalar</span>
+      </button>
+    </div>
 
-    <!-- ==================== 1. TAB: GENEL BAKIŞ (DASHBOARD) ==================== -->
-    <section id="tab-dashboard" class="space-y-6">
-      <!-- Karşılama Kartı -->
-      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-indigo-900/60 via-purple-900/40 to-slate-900/80 border border-indigo-500/20 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
-        <div class="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 mb-3">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Aktif Dönem Modu
-            </span>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Hoş Geldin, Ceren! 👋</h2>
-            <p class="text-slate-300 text-sm mt-1 max-w-xl">Bugünün derslerini takip et, yeni notlar al ve üzerinde çalıştığın projeleri tek bir merkezden düzenle.</p>
-          </div>
-          <div class="flex gap-2">
-            <button onclick="openModal('modal-course')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
-              <i class="fas fa-plus"></i> Ders Ekle
-            </button>
-            <button onclick="openModal('modal-note')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-purple-600/30">
-              <i class="fas fa-pen"></i> Not Ekle
-            </button>
-          </div>
+    <!-- 1. SEKME: DERS PROGRAMI -->
+    <div id="tab-program" class="space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <!-- Gün Seçici -->
+        <div class="flex bg-slate-900 border border-slate-800 rounded-xl p-1 text-xs" id="gun-butonlari">
+          <button onclick="gunSec('Pazartesi')" class="gun-btn px-4 py-2 rounded-lg font-semibold bg-purple-600 text-white">Pazartesi</button>
+          <button onclick="gunSec('Salı')" class="gun-btn px-4 py-2 rounded-lg font-medium text-slate-400 hover:text-white">Salı</button>
+          <button onclick="gunSec('Çarşamba')" class="gun-btn px-4 py-2 rounded-lg font-medium text-slate-400 hover:text-white">Çarşamba</button>
+          <button onclick="gunSec('Perşembe')" class="gun-btn px-4 py-2 rounded-lg font-medium text-slate-400 hover:text-white">Perşembe</button>
+          <button onclick="gunSec('Cuma')" class="gun-btn px-4 py-2 rounded-lg font-medium text-slate-400 hover:text-white">Cuma</button>
         </div>
-      </div>
-
-      <!-- İstatistik Sayaçları -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl backdrop-blur-sm">
-          <div class="flex items-center justify-between text-indigo-400 mb-2">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Haftalık Dersler</span>
-            <i class="fas fa-calendar-check text-lg"></i>
-          </div>
-          <p id="stat-total-courses" class="text-2xl sm:text-3xl font-extrabold text-white">0</p>
-        </div>
-        <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl backdrop-blur-sm">
-          <div class="flex items-center justify-between text-purple-400 mb-2">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Kayıtlı Notlar</span>
-            <i class="fas fa-sticky-note text-lg"></i>
-          </div>
-          <p id="stat-total-notes" class="text-2xl sm:text-3xl font-extrabold text-white">0</p>
-        </div>
-        <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl backdrop-blur-sm">
-          <div class="flex items-center justify-between text-pink-400 mb-2">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Çalışma / Dosya</span>
-            <i class="fas fa-layer-group text-lg"></i>
-          </div>
-          <p id="stat-total-projects" class="text-2xl sm:text-3xl font-extrabold text-white">0</p>
-        </div>
-        <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl backdrop-blur-sm">
-          <div class="flex items-center justify-between text-emerald-400 mb-2">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Bugünkü Ders</span>
-            <i class="fas fa-clock text-lg"></i>
-          </div>
-          <p id="stat-today-courses" class="text-2xl sm:text-3xl font-extrabold text-white">0</p>
-        </div>
-      </div>
-
-      <!-- Ana Sayfa İçerik Önizlemeleri -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Bugünün Programı -->
-        <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-base font-bold text-white flex items-center gap-2">
-              <i class="fas fa-sun text-amber-400"></i> Bugünün Dersleri (<span id="dash-today-label">Bugün</span>)
-            </h3>
-            <button onclick="switchTab('schedule')" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold">Tümünü Gör →</button>
-          </div>
-          <div id="dash-today-list" class="space-y-3">
-            <!-- Dinamik doldurulacak -->
-          </div>
-        </div>
-
-        <!-- Son Eklenen Notlar -->
-        <div class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-sm">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-base font-bold text-white flex items-center gap-2">
-              <i class="fas fa-feather-pointed text-purple-400"></i> Son Alınan Notlar
-            </h3>
-            <button onclick="switchTab('notes')" class="text-xs text-purple-400 hover:text-purple-300 font-semibold">Tüm Notlar →</button>
-          </div>
-          <div id="dash-recent-notes" class="space-y-3">
-            <!-- Dinamik doldurulacak -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== 2. TAB: DERS PROGRAMI & TAKVİM ==================== -->
-    <section id="tab-schedule" class="hidden space-y-6">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-            <i class="fas fa-calendar-days text-indigo-400"></i> Haftalık Ders Programı
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Haftanın gününü seçerek ders saatlerini ve derslik bilgilerini yönetebilirsin.</p>
-        </div>
-        <button onclick="openModal('modal-course')" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-indigo-600/30">
-          <i class="fas fa-plus"></i> Yeni Ders Ekle
+        <button onclick="dersModalAc()" class="bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center space-x-2 transition shadow-lg shadow-purple-600/20">
+          <i class="fas fa-plus"></i>
+          <span>Manuel Ders Ekle</span>
         </button>
       </div>
 
-      <!-- Gün Seçici Butonlar -->
-      <div class="flex flex-wrap gap-2 border-b border-slate-800/80 pb-4" id="days-selector">
-        <button onclick="selectDay('Pazartesi')" class="day-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white transition shadow-sm">Pazartesi</button>
-        <button onclick="selectDay('Salı')" class="day-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition">Salı</button>
-        <button onclick="selectDay('Çarşamba')" class="day-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition">Çarşamba</button>
-        <button onclick="selectDay('Perşembe')" class="day-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition">Perşembe</button>
-        <button onclick="selectDay('Cuma')" class="day-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition">Cuma</button>
+      <!-- Ders Kartları Listesi -->
+      <div id="ders-listesi" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- JS ile dolacak -->
       </div>
+    </div>
 
-      <!-- Seçili Günün Dersleri -->
-      <div id="schedule-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Dinamik render edilecek -->
-      </div>
-    </section>
-
-    <!-- ==================== 3. TAB: DERS NOTLARI ==================== -->
-    <section id="tab-notes" class="hidden space-y-6">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-            <i class="fas fa-book text-purple-400"></i> Ders Notlarım
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Önemli özetleri, sınav hazırlıklarını ve çalışma notlarını derli toplu tut.</p>
-        </div>
-        <button onclick="openModal('modal-note')" class="bg-purple-600 hover:bg-purple-500 text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-purple-600/30">
-          <i class="fas fa-plus"></i> Yeni Not Oluştur
+    <!-- 2. SEKME: DERS NOTLARI -->
+    <div id="tab-notlar" class="hidden space-y-6">
+      <div class="flex justify-between items-center">
+        <p class="text-sm text-slate-400">Derslerde aldığın özetleri, vize/final hazırlık notlarını sakla.</p>
+        <button onclick="notModalAc()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center space-x-2 transition">
+          <i class="fas fa-plus"></i>
+          <span>Yeni Not Ekle</span>
         </button>
       </div>
-
-      <!-- Arama ve Filtreleme -->
-      <div class="flex flex-col sm:flex-row gap-3">
-        <div class="relative flex-1">
-          <i class="fas fa-search absolute left-4 top-3.5 text-slate-500 text-sm"></i>
-          <input type="text" id="notes-search-input" oninput="renderNotes()" placeholder="Notlarda ara (başlık, ders adı veya içerik)..." class="w-full pl-11 pr-4 py-2.5 bg-slate-900/60 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 transition">
-        </div>
-        <select id="notes-course-filter" onchange="renderNotes()" class="bg-slate-900/60 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-300 focus:outline-none focus:border-purple-500">
-          <option value="ALL">Tüm Dersler</option>
-          <!-- Ders listesi dinamik doldurulabilir -->
-        </select>
+      <div id="not-listesi" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- JS ile dolacak -->
       </div>
+    </div>
 
-      <!-- Not Kartları Grid -->
-      <div id="notes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Dinamik doldurulacak -->
-      </div>
-    </section>
-
-    <!-- ==================== 4. TAB: ÇALIŞMALARIM & DOSYALAR ==================== -->
-    <section id="tab-projects" class="hidden space-y-6">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h2 class="text-2xl font-bold text-white flex items-center gap-2">
-            <i class="fas fa-briefcase text-pink-400"></i> Çalışmalarım, Ödevler & Dosyalar
-          </h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Tamamladığın projeleri, sunduğun ödevleri veya bağlantılı dökümanları sergile.</p>
-        </div>
-        <button onclick="openModal('modal-project')" class="bg-pink-600 hover:bg-pink-500 text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-2 shadow-lg shadow-pink-600/30">
-          <i class="fas fa-plus"></i> Yeni Çalışma / Dosya Ekle
+    <!-- 3. SEKME: ÇALIŞMALAR & DOSYALAR -->
+    <div id="tab-projeler" class="hidden space-y-6">
+      <div class="flex justify-between items-center">
+        <p class="text-sm text-slate-400">Ödevlerin, kod depoların ve projelerinin bağlantıları.</p>
+        <button onclick="projeModalAc()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-2.5 rounded-xl flex items-center space-x-2 transition">
+          <i class="fas fa-plus"></i>
+          <span>Yeni Proje/Link Ekle</span>
         </button>
       </div>
-
-      <!-- Çalışmalar Grid -->
-      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Dinamik doldurulacak -->
+      <div id="proje-listesi" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- JS ile dolacak -->
       </div>
-    </section>
-
+    </div>
   </main>
 
-  <!-- ==================== MODAL: DERS EKLE ==================== -->
-  <div id="modal-course" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl space-y-4">
-      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-        <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fas fa-calendar-plus text-indigo-400"></i> Yeni Ders Ekle</h3>
-        <button onclick="closeModal('modal-course')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
-      </div>
-      <form id="form-course" onsubmit="handleSaveCourse(event)" class="space-y-3.5">
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Ders Adı *</label>
-          <input required type="text" id="course-name" placeholder="Örn: Bilgisayar Ağları" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
-        </div>
-        <div class="grid grid-cols-2 gap-3">
+  <!-- SAĞ ALT KÖŞE AI CHATBOT BUTONU VE PENCERESİ -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <!-- Yuvarlak Açma Butonu -->
+    <button onclick="toggleAiChat()" id="ai-toggle-btn" class="w-14 h-14 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-2xl flex items-center justify-center text-xl hover:scale-105 active:scale-95 transition">
+      <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- Chat Penceresi -->
+    <div id="ai-chat-window" class="hidden absolute bottom-16 right-0 w-[360px] sm:w-[400px] h-[520px] bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-xl">
+      <!-- Chat Başlığı -->
+      <div class="bg-slate-800/80 px-4 py-3.5 border-b border-slate-700 flex items-center justify-between">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center text-xs">
+            <i class="fas fa-sparkles"></i>
+          </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Gün *</label>
-            <select id="course-day" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+            <h4 class="text-xs font-bold text-white">Ceren's AI Copilot</h4>
+            <span class="text-[10px] text-emerald-400 font-medium">● Çevrimiçi</span>
+          </div>
+        </div>
+        <button onclick="toggleAiChat()" class="text-slate-400 hover:text-white text-sm"><i class="fas fa-times"></i></button>
+      </div>
+
+      <!-- Mesaj Alanı -->
+      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs custom-scroll">
+        <div class="flex items-start space-x-2">
+          <div class="w-6 h-6 rounded bg-purple-600/30 text-purple-300 flex items-center justify-center text-[10px] mt-0.5">AI</div>
+          <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700 max-w-[85%] leading-relaxed">
+            Selam Ceren! Bana günlük konuşur gibi ders veya not yazdırabilirsin.<br><br>
+            Örnek: <em>"Pazartesi saat 10:00-12:00 Olasılık ve İstatistik ekle hoca Ahmet derslik B204"</em>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hızlı Öneri Butonları -->
+      <div class="px-3 py-1.5 bg-slate-950/60 border-t border-slate-800/80 flex space-x-2 overflow-x-auto text-[11px] whitespace-nowrap custom-scroll">
+        <button onclick="hizliKomut('Pazartesi 09:00 - 11:00 İstatistik derslik D101 ekle')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-md transition">+ İstatistik Ekle</button>
+        <button onclick="hizliKomut('Salı 13:00 - 15:00 Veri Analizi ekle')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-md transition">+ Veri Analizi</button>
+        <button onclick="hizliKomut('Not ekle: Lineer Cebir - Matrisler ve Özdeğerler konusuna çalış')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 rounded-md transition">+ Hızlı Not</button>
+      </div>
+
+      <!-- Input Alanı -->
+      <div class="p-3 bg-slate-850 border-t border-slate-800 flex items-center gap-2">
+        <input type="text" id="ai-input" placeholder="Ders veya not yaz (örn: Çarşamba 14:00...)" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500" onkeypress="if(event.key === 'Enter') aiMesajGonder()">
+        <button onclick="aiMesajGonder()" class="bg-purple-600 hover:bg-purple-500 text-white w-8 h-8 rounded-xl flex items-center justify-center transition flex-shrink-0">
+          <i class="fas fa-arrow-up text-xs"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANUEL DERS EKLEME MODALI -->
+  <div id="modal-ders" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 space-y-4">
+      <h3 class="text-base font-bold text-white flex items-center justify-between">
+        <span>Manuel Ders Ekle</span>
+        <button onclick="modalKapat('modal-ders')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+      </h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">Ders Adı</label>
+          <input type="text" id="m-ders-adi" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-slate-400 mb-1">Gün</label>
+            <select id="m-ders-gun" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white">
               <option value="Pazartesi">Pazartesi</option>
               <option value="Salı">Salı</option>
               <option value="Çarşamba">Çarşamba</option>
@@ -248,464 +184,311 @@
             </select>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Saat Aralığı *</label>
-            <input required type="text" id="course-time" placeholder="09:00 - 11:50" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+            <label class="block text-slate-400 mb-1">Saat (örn: 09:00 - 11:50)</label>
+            <input type="text" id="m-ders-saat" placeholder="09:00 - 11:50" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white">
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-2">
           <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Derslik / Konum</label>
-            <input type="text" id="course-room" placeholder="Lab-3 / Amfi B" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+            <label class="block text-slate-400 mb-1">Derslik / Salon</label>
+            <input type="text" id="m-ders-yer" placeholder="D-102" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Öğretim Üyesi</label>
-            <input type="text" id="course-instructor" placeholder="Dr. Ahmet Yılmaz" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+            <label class="block text-slate-400 mb-1">Hoca Adı</label>
+            <input type="text" id="m-ders-hoca" placeholder="Prof. Dr. ..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white">
           </div>
         </div>
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Renk Teması</label>
-          <select id="course-color" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
-            <option value="indigo">İndigo (Mavi/Mor)</option>
-            <option value="emerald">Zümrüt Yeşili</option>
-            <option value="amber">Amber / Turuncu</option>
-            <option value="purple">Mor</option>
-            <option value="rose">Gül Kurusu / Kırmızı</option>
-          </select>
-        </div>
-        <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="closeModal('modal-course')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:bg-slate-800">İptal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg">Kaydet</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- ==================== MODAL: NOT EKLE ==================== -->
-  <div id="modal-note" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl space-y-4">
-      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-        <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fas fa-file-pen text-purple-400"></i> Yeni Not Ekle</h3>
-        <button onclick="closeModal('modal-note')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
       </div>
-      <form id="form-note" onsubmit="handleSaveNote(event)" class="space-y-3.5">
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Not Başlığı *</label>
-          <input required type="text" id="note-title" placeholder="Örn: 3. Hafta SQL Sorguları ve İndeksleme" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">İlgili Ders / Kategori *</label>
-          <input required type="text" id="note-course" placeholder="Örn: Veritabanı Yönetimi" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Not İçeriği / Özet Maddeler *</label>
-          <textarea required id="note-content" rows="6" placeholder="Önemli formüller, sınavda çıkabilecek noktalar veya kısa özetler..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500"></textarea>
-        </div>
-        <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="closeModal('modal-note')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:bg-slate-800">İptal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold bg-purple-600 hover:bg-purple-500 text-white shadow-lg">Notu Kaydet</button>
-        </div>
-      </form>
+      <button onclick="manuelDersKaydet()" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2.5 rounded-xl text-xs transition">Kaydet</button>
     </div>
   </div>
 
-  <!-- ==================== MODAL: ÇALIŞMA / DOSYA EKLE ==================== -->
-  <div id="modal-project" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 shadow-2xl space-y-4">
-      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-        <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fas fa-folder-plus text-pink-400"></i> Yeni Çalışma / Dosya Ekle</h3>
-        <button onclick="closeModal('modal-project')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+  <!-- MANUEL NOT EKLEME MODALI -->
+  <div id="modal-not" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-md p-6 space-y-4">
+      <h3 class="text-base font-bold text-white flex items-center justify-between">
+        <span>Yeni Not Ekle</span>
+        <button onclick="modalKapat('modal-not')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+      </h3>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">Ders / Başlık</label>
+          <input type="text" id="m-not-baslik" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white">
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Not Detayı</label>
+          <textarea id="m-not-icerik" rows="4" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-white"></textarea>
+        </div>
       </div>
-      <form id="form-project" onsubmit="handleSaveProject(event)" class="space-y-3.5">
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Çalışma / Proje Adı *</label>
-          <input required type="text" id="project-title" placeholder="Örn: E-Ticaret Arayüz Tasarımı" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-pink-500">
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Tür</label>
-            <select id="project-type" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-pink-500">
-              <option value="Proje">Proje</option>
-              <option value="Ödev">Ödev</option>
-              <option value="Rapor / PDF">Rapor / Döküman</option>
-              <option value="Sunum">Sunum</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Kullanılan Araçlar</label>
-            <input type="text" id="project-tech" placeholder="HTML, CSS, Figma" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-pink-500">
-          </div>
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Kısa Açıklama</label>
-          <textarea id="project-desc" rows="2" placeholder="Projenin amacı veya ödev konusu hakkında 1-2 cümle..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-pink-500"></textarea>
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Bağlantı Linki (GitHub, Google Drive veya Site)</label>
-          <input type="url" id="project-link" placeholder="https://github.com/..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-pink-500">
-        </div>
-        <div class="flex justify-end gap-2 pt-2">
-          <button type="button" onclick="closeModal('modal-project')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:bg-slate-800">İptal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold bg-pink-600 hover:bg-pink-500 text-white shadow-lg">Ekle</button>
-        </div>
-      </form>
+      <button onclick="manuelNotKaydet()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-2.5 rounded-xl text-xs transition">Kaydet</button>
     </div>
   </div>
 
-  <!-- Altbilgi -->
-  <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500">
-    <p>© 2026 Ceren Şengüler • Bu site GitHub Pages üzerinden barındırılmaktadır. 🚀</p>
-  </footer>
-
-  <!-- ==================== UYGULAMA JAVASCRIPT MOTORU ==================== -->
   <script>
-    // --- BAŞLANGIÇ VERİLERİ (Örnek Şablon) ---
-    const defaultCourses = [
-      { id: 1, name: "Web Programlama", day: "Pazartesi", time: "09:30 - 12:20", room: "Lab-2", instructor: "Öğr. Gör. Elif Kaya", color: "indigo" },
-      { id: 2, name: "Veri Yapıları ve Algoritmalar", day: "Pazartesi", time: "13:30 - 16:20", room: "Amfi 3", instructor: "Doç. Dr. Serkan Demir", color: "purple" },
-      { id: 3, name: "Veritabanı Sistemleri", day: "Salı", time: "10:00 - 12:50", room: "D-204", instructor: "Dr. Zeynep Aksoy", color: "emerald" },
-      { id: 4, name: "Yazılım Mühendisliği", day: "Çarşamba", time: "11:00 - 13:50", room: "D-102", instructor: "Prof. Dr. Murat Can", color: "amber" },
-      { id: 5, name: "Bilgisayar Ağları", day: "Perşembe", time: "14:00 - 16:50", room: "Lab-4", instructor: "Dr. Selin Yıldız", color: "rose" }
+    // --- VERİ TABANI & HAFIZA (LocalStorage) ---
+    let aktifGun = 'Pazartesi';
+
+    let dersler = JSON.parse(localStorage.getItem('portal_dersler')) || [
+      { id: 1, gun: 'Pazartesi', ad: 'Olasılık & İstatistik', saat: '09:00 - 11:50', yer: 'Amfi 2', hoca: 'Prof. Dr. Kaya', renk: 'purple' },
+      { id: 2, gun: 'Salı', ad: 'Veri Yapıları', saat: '13:00 - 14:50', yer: 'Lab 3', hoca: 'Doç. Dr. Selin', renk: 'indigo' }
     ];
 
-    const defaultNotes = [
-      { id: 1, title: "HTML Semantik Etiketler ve Yapı", course: "Web Programlama", content: "• <header>, <main>, <footer> etiketleri SEO ve erişilebilirlik için çok önemlidir.\n• Sayfadaki h1 etiketi tek olmalıdır.\n• Form girişlerinde label for ve input id eşleşmesi şart.", date: "12 Ekim 2026" },
-      { id: 2, title: "Bağlı Listeler (Linked Lists) vs Diziler", course: "Veri Yapıları ve Algoritmalar", content: "• Dizilerde rastgele erişim O(1), bağlı listelerde O(n).\n• Eleman ekleme/silme bağlı listede pointer güncellemesiyle çok daha hızlı.\n• Sınav sorusu: Dairesel bağlı liste döngü tespiti (Floyd's Cycle Algorithm).", date: "14 Ekim 2026" }
+    let notlar = JSON.parse(localStorage.getItem('portal_notlar')) || [
+      { id: 1, baslik: 'Olasılık Vize Konuları', icerik: 'Bayes Teoremi, Rastgele Değişkenler ve Poisson Dağılımına çalışılacak.', tarih: '12 Ekim' }
     ];
 
-    const defaultProjects = [
-      { id: 1, title: "Kişisel Portfolyo Sitesi", type: "Proje", tech: "HTML5, Tailwind CSS, JS", desc: "GitHub Pages üzerinde yayınlanan interaktif öğrenci ve çalışma alanı projem.", link: "https://github.com/Ceren-senguler/learning-2026" },
-      { id: 2, title: "Veritabanı Normalizasyon Ödevi", type: "Ödev", tech: "PostgreSQL, ERD", desc: "1NF, 2NF ve 3NF normalizasyon adımları ile kütüphane yönetim veritabanı tasarımı.", link: "#" }
+    let projeler = JSON.parse(localStorage.getItem('portal_projeler')) || [
+      { id: 1, baslik: 'Kişisel Web Sitesi', aciklama: 'GitHub Pages üzerinde modern öğrenci portalı.', link: 'https://github.com/Ceren-senguler' }
     ];
 
-    // --- LOCALSTORAGE YÖNETİMİ ---
-    let courses = JSON.parse(localStorage.getItem('ceren_courses')) || defaultCourses;
-    let notes = JSON.parse(localStorage.getItem('ceren_notes')) || defaultNotes;
-    let projects = JSON.parse(localStorage.getItem('ceren_projects')) || defaultProjects;
-
-    function saveAll() {
-      localStorage.setItem('ceren_courses', JSON.stringify(courses));
-      localStorage.setItem('ceren_notes', JSON.stringify(notes));
-      localStorage.setItem('ceren_projects', JSON.stringify(projects));
-      updateDashboard();
+    function kaydet() {
+      localStorage.setItem('portal_dersler', JSON.stringify(dersler));
+      localStorage.setItem('portal_notlar', JSON.stringify(notlar));
+      localStorage.setItem('portal_projeler', JSON.stringify(projeler));
+      renderDersler();
+      renderNotlar();
     }
 
-    // --- TAB GEÇİŞLERİ ---
-    function switchTab(tabId) {
-      ['dashboard', 'schedule', 'notes', 'projects'].forEach(t => {
-        document.getElementById(`tab-${t}`).classList.add('hidden');
-        const btn = document.getElementById(`btn-tab-${t}`);
-        btn.className = "nav-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-800";
+    // --- SEKME GEÇİŞLERİ ---
+    function sekmeDegistir(sekme) {
+      ['program', 'notlar', 'projeler'].forEach(s => {
+        document.getElementById(`tab-${s}`).classList.add('hidden');
+        document.getElementById(`tab-btn-${s}`).className = "pb-3 text-sm font-semibold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition flex items-center space-x-2";
       });
-
-      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-      const activeBtn = document.getElementById(`btn-tab-${tabId}`);
-      activeBtn.className = "nav-btn px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition flex items-center gap-2 bg-indigo-600 text-white shadow-md shadow-indigo-500/20";
-
-      if (tabId === 'schedule') renderSchedule();
-      if (tabId === 'notes') renderNotes();
-      if (tabId === 'projects') renderProjects();
-      if (tabId === 'dashboard') updateDashboard();
+      document.getElementById(`tab-${sekme}`).classList.remove('hidden');
+      document.getElementById(`tab-btn-${sekme}`).className = "pb-3 text-sm font-semibold border-b-2 border-purple-500 text-purple-400 transition flex items-center space-x-2";
     }
 
-    // --- MODAL YÖNETİMİ ---
-    function openModal(modalId) {
-      document.getElementById(modalId).classList.remove('hidden');
-    }
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.add('hidden');
-    }
-
-    // --- DERS PROGRAMI YÖNETİMİ ---
-    let selectedDay = "Pazartesi";
-
-    function selectDay(day) {
-      selectedDay = day;
-      const buttons = document.querySelectorAll('#days-selector button');
-      buttons.forEach(btn => {
-        if (btn.innerText.trim() === day) {
-          btn.className = "day-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-indigo-600 text-white transition shadow-sm";
+    // --- DERSLERİ ÇİZME (RENDER) ---
+    function gunSec(gun) {
+      aktifGun = gun;
+      document.querySelectorAll('.gun-btn').forEach(b => {
+        if (b.innerText === gun) {
+          b.className = "gun-btn px-4 py-2 rounded-lg font-semibold bg-purple-600 text-white";
         } else {
-          btn.className = "day-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition";
+          b.className = "gun-btn px-4 py-2 rounded-lg font-medium text-slate-400 hover:text-white";
         }
       });
-      renderSchedule();
+      renderDersler();
     }
 
-    const colorMap = {
-      indigo: { bg: 'bg-indigo-950/30', border: 'border-indigo-500/30', badge: 'bg-indigo-500/20 text-indigo-300', dot: 'bg-indigo-500' },
-      emerald: { bg: 'bg-emerald-950/30', border: 'border-emerald-500/30', badge: 'bg-emerald-500/20 text-emerald-300', dot: 'bg-emerald-500' },
-      amber: { bg: 'bg-amber-950/30', border: 'border-amber-500/30', badge: 'bg-amber-500/20 text-amber-300', dot: 'bg-amber-500' },
-      purple: { bg: 'bg-purple-950/30', border: 'border-purple-500/30', badge: 'bg-purple-500/20 text-purple-300', dot: 'bg-purple-500' },
-      rose: { bg: 'bg-rose-950/30', border: 'border-rose-500/30', badge: 'bg-rose-500/20 text-rose-300', dot: 'bg-rose-500' },
-    };
+    function renderDersler() {
+      const container = document.getElementById('ders-listesi');
+      container.innerHTML = '';
+      const bugununDersleri = dersler.filter(d => d.gun.toLowerCase() === aktifGun.toLowerCase());
 
-    function renderSchedule() {
-      const container = document.getElementById('schedule-cards-container');
-      const filtered = courses.filter(c => c.day === selectedDay);
-
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-full py-12 text-center text-slate-500 border border-dashed border-slate-800 rounded-2xl">
-            <i class="fas fa-mug-hot text-3xl mb-2 text-slate-600"></i>
-            <p class="text-sm font-medium">${selectedDay} günü için henüz ders eklenmemiş. Tatil veya serbest çalışma vakti! ✨</p>
-          </div>
-        `;
+      if (bugununDersleri.length === 0) {
+        container.innerHTML = `<div class="col-span-full py-12 text-center text-slate-500 text-xs">Bu gün için planlanmış bir ders bulunmuyor. AI Asistanı ile hemen ekleyebilirsin!</div>`;
         return;
       }
 
-      container.innerHTML = filtered.map(course => {
-        const cStyle = colorMap[course.color] || colorMap.indigo;
-        return `
-          <div class="${cStyle.bg} border ${cStyle.border} rounded-2xl p-5 relative backdrop-blur-sm transition hover:scale-[1.01]">
-            <div class="flex items-start justify-between mb-3">
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold ${cStyle.badge}">
-                <span class="w-1.5 h-1.5 rounded-full ${cStyle.dot}"></span>
-                ${course.time}
-              </span>
-              <button onclick="deleteCourse(${course.id})" class="text-slate-500 hover:text-rose-400 text-xs p-1 transition" title="Dersi Sil">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-            <h4 class="text-base font-bold text-white mb-2">${course.name}</h4>
-            <div class="space-y-1 text-xs text-slate-400">
-              <p class="flex items-center gap-2"><i class="fas fa-location-dot w-3.5 text-slate-500"></i> ${course.room || 'Belirtilmedi'}</p>
-              <p class="flex items-center gap-2"><i class="fas fa-user-tie w-3.5 text-slate-500"></i> ${course.instructor || 'Belirtilmedi'}</p>
-            </div>
+      bugununDersleri.forEach(d => {
+        const div = document.createElement('div');
+        div.className = "bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-purple-500/50 transition group relative";
+        div.innerHTML = `
+          <div class="flex justify-between items-start mb-3">
+            <span class="text-[11px] font-semibold px-2.5 py-1 bg-purple-500/10 text-purple-400 rounded-lg border border-purple-500/20">${d.saat}</span>
+            <button onclick="dersSil(${d.id})" class="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition text-xs"><i class="fas fa-trash"></i></button>
+          </div>
+          <h4 class="text-white font-bold text-sm mb-2">${d.ad}</h4>
+          <div class="space-y-1 text-slate-400 text-xs">
+            <p><i class="fas fa-map-marker-alt text-purple-400 mr-1.5"></i> ${d.yer || 'Belirtilmedi'}</p>
+            <p><i class="fas fa-chalkboard-teacher text-indigo-400 mr-1.5"></i> ${d.hoca || 'Belirtilmedi'}</p>
           </div>
         `;
-      }).join('');
+        container.appendChild(div);
+      });
     }
 
-    function handleSaveCourse(e) {
-      e.preventDefault();
-      const newCourse = {
-        id: Date.now(),
-        name: document.getElementById('course-name').value,
-        day: document.getElementById('course-day').value,
-        time: document.getElementById('course-time').value,
-        room: document.getElementById('course-room').value,
-        instructor: document.getElementById('course-instructor').value,
-        color: document.getElementById('course-color').value
-      };
-      courses.push(newCourse);
-      saveAll();
-      closeModal('modal-course');
-      document.getElementById('form-course').reset();
-      selectDay(newCourse.day);
+    function dersSil(id) {
+      dersler = dersler.filter(d => d.id !== id);
+      kaydet();
     }
 
-    function deleteCourse(id) {
-      if (confirm('Bu dersi silmek istediğine emin misin?')) {
-        courses = courses.filter(c => c.id !== id);
-        saveAll();
-        renderSchedule();
+    // --- NOTLARI ÇİZME ---
+    function renderNotlar() {
+      const container = document.getElementById('not-listesi');
+      container.innerHTML = '';
+      notlar.forEach(n => {
+        const div = document.createElement('div');
+        div.className = "bg-slate-900 border border-slate-800 rounded-2xl p-5 relative group";
+        div.innerHTML = `
+          <div class="flex justify-between items-center mb-2">
+            <h4 class="text-white font-bold text-sm">${n.baslik}</h4>
+            <button onclick="notSil(${n.id})" class="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition text-xs"><i class="fas fa-trash"></i></button>
+          </div>
+          <p class="text-slate-300 text-xs leading-relaxed mb-3">${n.icerik}</p>
+          <span class="text-[10px] text-slate-500">${n.tarih}</span>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function notSil(id) {
+      notlar = notlar.filter(n => n.id !== id);
+      kaydet();
+    }
+
+    // --- MODAL İŞLEMLERİ ---
+    function dersModalAc() { document.getElementById('modal-ders').classList.replace('hidden', 'flex'); }
+    function notModalAc() { document.getElementById('modal-not').classList.replace('hidden', 'flex'); }
+    function modalKapat(id) { document.getElementById(id).classList.replace('flex', 'hidden'); }
+
+    function manuelDersKaydet() {
+      const ad = document.getElementById('m-ders-adi').value;
+      const gun = document.getElementById('m-ders-gun').value;
+      const saat = document.getElementById('m-ders-saat').value || '10:00 - 12:00';
+      const yer = document.getElementById('m-ders-yer').value || 'Amfi';
+      const hoca = document.getElementById('m-ders-hoca').value || '-';
+      if (ad) {
+        dersler.push({ id: Date.now(), gun, ad, saat, yer, hoca });
+        kaydet();
+        modalKapat('modal-ders');
+        document.getElementById('m-ders-adi').value = '';
       }
     }
 
-    // --- DERS NOTLARI YÖNETİMİ ---
-    function renderNotes() {
-      const container = document.getElementById('notes-grid');
-      const search = document.getElementById('notes-search-input').value.toLowerCase();
-      const filterCourse = document.getElementById('notes-course-filter').value;
+    function manuelNotKaydet() {
+      const baslik = document.getElementById('m-not-baslik').value;
+      const icerik = document.getElementById('m-not-icerik').value;
+      if (baslik && icerik) {
+        notlar.unshift({ id: Date.now(), baslik, icerik, tarih: 'Bugün' });
+        kaydet();
+        modalKapat('modal-not');
+        document.getElementById('m-not-baslik').value = '';
+        document.getElementById('m-not-icerik').value = '';
+      }
+    }
 
-      // Filtre seçeneklerini güncelle
-      const select = document.getElementById('notes-course-filter');
-      const existingOptions = Array.from(select.options).map(o => o.value);
-      const uniqueCourses = [...new Set(notes.map(n => n.course))];
-      uniqueCourses.forEach(c => {
-        if (!existingOptions.includes(c)) {
-          const opt = document.createElement('option');
-          opt.value = c;
-          opt.innerText = c;
-          select.appendChild(opt);
-        }
+    // ==========================================
+    // 🧠 YAPAY ZEKÂ / AKILLI ASİSTAN MOTORU (NLP)
+    // ==========================================
+    function toggleAiChat() {
+      const win = document.getElementById('ai-chat-window');
+      win.classList.toggle('hidden');
+    }
+    function aiModalAc() {
+      document.getElementById('ai-chat-window').classList.remove('hidden');
+    }
+
+    function hizliKomut(komut) {
+      document.getElementById('ai-input').value = komut;
+      aiMesajGonder();
+    }
+
+    function chatMesajEkle(gonderen, mesaj) {
+      const c = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = gonderen === 'user' ? "flex items-start space-x-2 justify-end" : "flex items-start space-x-2";
+      
+      if (gonderen === 'user') {
+        div.innerHTML = `
+          <div class="bg-purple-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed">${mesaj}</div>
+        `;
+      } else {
+        div.innerHTML = `
+          <div class="w-6 h-6 rounded bg-purple-600/30 text-purple-300 flex items-center justify-center text-[10px] mt-0.5">AI</div>
+          <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700 max-w-[85%] leading-relaxed">${mesaj}</div>
+        `;
+      }
+      c.appendChild(div);
+      c.scrollTop = c.scrollHeight;
+    }
+
+    function aiMesajGonder() {
+      const input = document.getElementById('ai-input');
+      const metin = input.value.trim();
+      if (!metin) return;
+
+      chatMesajEkle('user', metin);
+      input.value = '';
+
+      // Botun analizi (Doğal Dil İşleme Mantığı)
+      setTimeout(() => {
+        aiKomutunuYurut(metin);
+      }, 400);
+    }
+
+    function aiKomutunuYurut(text) {
+      const t = text.toLowerCase();
+
+      // 1. Durum: NOT EKLEME İSTEĞİ
+      if (t.includes('not ekle') || t.startsWith('not:')) {
+        let notIcerik = text.replace(/not ekle:?/i, '').replace(/not:?/i, '').trim();
+        notlar.unshift({
+          id: Date.now(),
+          baslik: 'Hızlı Not',
+          icerik: notIcerik,
+          tarih: 'Şimdi'
+        });
+        kaydet();
+        chatMesajEkle('ai', `📝 Notunu hemen kaydettim: <strong>"${notIcerik}"</strong>`);
+        return;
+      }
+
+      // 2. Durum: DERS EKLEME İSTEĞİ
+      // Gün tespiti
+      const gunler = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma'];
+      let bulunanGun = null;
+      gunler.forEach(g => {
+        if (t.includes(g.toLowerCase())) bulunanGun = g;
       });
 
-      const filtered = notes.filter(n => {
-        const matchSearch = n.title.toLowerCase().includes(search) || n.content.toLowerCase().includes(search) || n.course.toLowerCase().includes(search);
-        const matchCourse = filterCourse === 'ALL' || n.course === filterCourse;
-        return matchSearch && matchCourse;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-full py-12 text-center text-slate-500 border border-dashed border-slate-800 rounded-2xl">
-            <i class="fas fa-book-open text-3xl mb-2 text-slate-600"></i>
-            <p class="text-sm font-medium">Aradığın kriterlere uygun not bulunamadı.</p>
-          </div>
-        `;
-        return;
+      // Saat aralığı tespiti (Örn: 10:00 - 12:00 veya 14:00)
+      const saatRegex = /(\d{1,2}:\d{2})\s*(?:-|ile|\/)?\s*(\d{1,2}:\d{2})?/;
+      const saatEslesme = text.match(saatRegex);
+      let bulunanSaat = '10:00 - 11:50';
+      if (saatEslesme) {
+        bulunanSaat = saatEslesme[2] ? `${saatEslesme[1]} - ${saatEslesme[2]}` : `${saatEslesme[1]} - Saat`;
       }
 
-      container.innerHTML = filtered.map(n => `
-        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-purple-500/40 transition">
-          <div>
-            <div class="flex items-center justify-between mb-2">
-              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/30">${n.course}</span>
-              <span class="text-[11px] text-slate-500">${n.date}</span>
-            </div>
-            <h4 class="text-base font-bold text-white mb-2">${n.title}</h4>
-            <p class="text-xs text-slate-300 whitespace-pre-line leading-relaxed font-normal">${n.content}</p>
-          </div>
-          <div class="flex justify-end gap-2 pt-4 mt-3 border-t border-slate-800/80">
-            <button onclick="copyNoteContent('${n.id}')" class="text-xs text-slate-400 hover:text-white px-2 py-1 rounded transition flex items-center gap-1">
-              <i class="fas fa-copy"></i> Kopyala
-            </button>
-            <button onclick="deleteNote(${n.id})" class="text-xs text-slate-400 hover:text-rose-400 px-2 py-1 rounded transition flex items-center gap-1">
-              <i class="fas fa-trash"></i> Sil
-            </button>
-          </div>
-        </div>
-      `).join('');
-    }
+      // Derslik ve Hoca tespiti
+      let bulunanYer = 'Derslik';
+      const yerEslesme = text.match(/(?:amfi|derslik|lab|salon)\s*([a-zA-Z0-9\-]+)/i);
+      if (yerEslesme) bulunanYer = yerEslesme[0];
 
-    function handleSaveNote(e) {
-      e.preventDefault();
-      const today = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
-      const newNote = {
-        id: Date.now(),
-        title: document.getElementById('note-title').value,
-        course: document.getElementById('note-course').value,
-        content: document.getElementById('note-content').value,
-        date: today
-      };
-      notes.unshift(newNote);
-      saveAll();
-      closeModal('modal-note');
-      document.getElementById('form-note').reset();
-      renderNotes();
-    }
+      let bulunanHoca = '';
+      const hocaEslesme = text.match(/(?:hoca|öğretmen|prof|doç)\s*([a-zA-ZğüşıöçĞÜŞİÖÇ]+)/i);
+      if (hocaEslesme) bulunanHoca = hocaEslesme[0];
 
-    function copyNoteContent(noteId) {
-      const note = notes.find(n => n.id == noteId);
-      if (note) {
-        navigator.clipboard.writeText(`${note.title}\n\n${note.content}`);
-        alert('Not içeriği panoya kopyalandı! 📋');
-      }
-    }
+      // Eğer gün veya ders ekle niyeti varsa:
+      if (bulunanGun || t.includes('ders') || t.includes('ekle')) {
+        const gun = bulunanGun || aktifGun;
+        
+        // Temiz ders adı çıkarma
+        let dersAdi = text
+          .replace(/(pazartesi|salı|çarşamba|perşembe|cuma)/gi, '')
+          .replace(/saat\s*\d{1,2}:\d{2}(?:\s*-\s*\d{1,2}:\d{2})?/gi, '')
+          .replace(/(?:amfi|derslik|lab|salon)\s*[a-zA-Z0-9\-]+/gi, '')
+          .replace(/(?:hoca|öğretmen|prof|doç)\s*[a-zA-ZğüşıöçĞÜŞİÖÇ]+/gi, '')
+          .replace(/(dersi|dersini|ekle|koy|yaz)/gi, '')
+          .replace(/[:\-]/g, '')
+          .trim();
 
-    function deleteNote(id) {
-      if (confirm('Bu notu silmek istediğine emin misin?')) {
-        notes = notes.filter(n => n.id !== id);
-        saveAll();
-        renderNotes();
-      }
-    }
+        if (dersAdi.length < 2) dersAdi = 'Yeni Ders';
 
-    // --- ÇALIŞMALAR & PROJELER YÖNETİMİ ---
-    function renderProjects() {
-      const container = document.getElementById('projects-grid');
-      if (projects.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-full py-12 text-center text-slate-500 border border-dashed border-slate-800 rounded-2xl">
-            <i class="fas fa-folder text-3xl mb-2 text-slate-600"></i>
-            <p class="text-sm font-medium">Henüz bir proje veya ödev eklenmedi.</p>
-          </div>
-        `;
-        return;
-      }
+        // Yeni ders nesnesi oluştur ve kaydet
+        dersler.push({
+          id: Date.now(),
+          gun: gun,
+          ad: dersAdi.charAt(0).toUpperCase() + dersAdi.slice(1),
+          saat: bulunanSaat,
+          yer: bulunanYer,
+          hoca: bulunanHoca || 'Belirtilmedi'
+        });
+        kaydet();
+        gunSec(gun); // Takvimi o güne getir
 
-      container.innerHTML = projects.map(p => `
-        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-pink-500/40 transition">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-pink-500/20 text-pink-300 border border-pink-500/30">${p.type}</span>
-              <button onclick="deleteProject(${p.id})" class="text-slate-500 hover:text-rose-400 text-xs">
-                <i class="fas fa-trash"></i>
-              </button>
-            </div>
-            <h4 class="text-base font-bold text-white mb-1.5">${p.title}</h4>
-            <p class="text-xs text-slate-400 mb-3 leading-relaxed">${p.desc || 'Açıklama belirtilmedi.'}</p>
-            ${p.tech ? `<div class="text-[11px] font-mono text-indigo-400 mb-3"><i class="fas fa-code mr-1"></i>${p.tech}</div>` : ''}
-          </div>
-          <div class="pt-3 border-t border-slate-800/80">
-            ${p.link && p.link !== '#' ? `
-              <a href="${p.link}" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-semibold text-pink-400 hover:text-pink-300 transition">
-                <i class="fas fa-external-link-alt"></i> Projeyi Aç / İncele →
-              </a>
-            ` : `
-              <span class="text-xs text-slate-500">Çevrimdışı / Dahili Dosya</span>
-            `}
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function handleSaveProject(e) {
-      e.preventDefault();
-      const newProject = {
-        id: Date.now(),
-        title: document.getElementById('project-title').value,
-        type: document.getElementById('project-type').value,
-        tech: document.getElementById('project-tech').value,
-        desc: document.getElementById('project-desc').value,
-        link: document.getElementById('project-link').value || '#'
-      };
-      projects.unshift(newProject);
-      saveAll();
-      closeModal('modal-project');
-      document.getElementById('form-project').reset();
-      renderProjects();
-    }
-
-    function deleteProject(id) {
-      if (confirm('Bu projeyi kaldırmak istediğine emin misin?')) {
-        projects = projects.filter(p => p.id !== id);
-        saveAll();
-        renderProjects();
-      }
-    }
-
-    // --- DASHBOARD GÜNCELLEME ---
-    function updateDashboard() {
-      document.getElementById('stat-total-courses').innerText = courses.length;
-      document.getElementById('stat-total-notes').innerText = notes.length;
-      document.getElementById('stat-total-projects').innerText = projects.length;
-
-      // Bugünün adını Türkçe belirle
-      const days = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
-      const currentDayName = days[new Date().getDay()];
-      document.getElementById('dash-today-label').innerText = currentDayName;
-
-      // Bugünün dersleri
-      const todayClasses = courses.filter(c => c.day === currentDayName);
-      document.getElementById('stat-today-courses').innerText = todayClasses.length;
-
-      const todayContainer = document.getElementById('dash-today-list');
-      if (todayClasses.length === 0) {
-        todayContainer.innerHTML = `<p class="text-xs text-slate-500 italic py-2">Bugün için programda kayıtlı ders bulunmuyor.</p>`;
+        chatMesajEkle('ai', `✨ Harika! <strong>${gun}</strong> gününe <strong>${dersAdi}</strong> dersini (${bulunanSaat}) başarıyla ekledim.`);
       } else {
-        todayContainer.innerHTML = todayClasses.map(c => `
-          <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950/40 border border-slate-800/60">
-            <div>
-              <p class="text-sm font-semibold text-white">${c.name}</p>
-              <p class="text-xs text-slate-400">${c.room || 'Derslik Yok'} • ${c.instructor || 'Hoca Yok'}</p>
-            </div>
-            <span class="text-xs font-mono font-medium text-indigo-400 bg-indigo-950/40 px-2.5 py-1 rounded-lg border border-indigo-800/40">${c.time}</span>
-          </div>
-        `).join('');
-      }
-
-      // Son notlar (ilk 2 tanesi)
-      const recentContainer = document.getElementById('dash-recent-notes');
-      if (notes.length === 0) {
-        recentContainer.innerHTML = `<p class="text-xs text-slate-500 italic py-2">Henüz not eklenmedi.</p>`;
-      } else {
-        recentContainer.innerHTML = notes.slice(0, 2).map(n => `
-          <div class="p-3 rounded-xl bg-slate-950/40 border border-slate-800/60">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-[11px] font-semibold text-purple-400">${n.course}</span>
-              <span class="text-[10px] text-slate-500">${n.date}</span>
-            </div>
-            <p class="text-sm font-semibold text-white truncate">${n.title}</p>
-            <p class="text-xs text-slate-400 line-clamp-1 mt-0.5">${n.content}</p>
-          </div>
-        `).join('');
+        // Genel Sohbet / Anlaşılamayan komut cevabı
+        chatMesajEkle('ai', `Tam anlayamadım Ceren. Bir ders eklemek istiyorsan şöyle yazabilirsin:<br><em>"Salı 14:00 - 16:00 Lineer Cebir derslik A101 ekle"</em>`);
       }
     }
 
-    // Sayfa ilk yüklendiğinde çalıştır
-    updateDashboard();
+    // Sayfa Başlatma
+    renderDersler();
+    renderNotlar();
   </script>
 </body>
 </html>
