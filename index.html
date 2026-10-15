@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="tr" class="dark">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ceren'in Dijital Dünyası ✨</title>
-  <!-- Tailwind CSS & FontAwesome İkonları -->
+  <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-    }
-  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -19,95 +14,82 @@
     .custom-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 9999px; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950 via-slate-900 to-purple-950">
+<body class="bg-slate-950 text-slate-100 min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-950 via-slate-900 to-slate-950">
 
   <!-- ÜST NAVBAR -->
   <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center border-b border-slate-800/80">
     <div class="flex items-center space-x-3">
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-500 via-pink-500 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/30">C</div>
-      <div>
-        <span class="font-extrabold text-base tracking-wide bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-transparent">Ceren's Hub</span>
-        <span class="text-[10px] block text-purple-300/60 font-semibold tracking-wider">KİŞİSEL ÇALIŞMA ALANI ✨</span>
-      </div>
+      <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-purple-500 via-pink-500 to-indigo-500 flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/20 text-sm">C</div>
+      <span class="font-bold text-lg tracking-wide bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-300 bg-clip-text text-transparent">Ceren's Hub</span>
     </div>
-    <!-- Sağ Menü Butonları -->
-    <div class="flex items-center space-x-3">
-      <button onclick="aiPencereToggle()" class="hidden sm:flex items-center space-x-2 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300 text-xs px-3.5 py-1.5 rounded-xl transition">
-        <i class="fas fa-sparkles text-pink-400 animate-spin" style="animation-duration: 4s;"></i>
-        <span>AI Asistan'a Yaz</span>
-      </button>
-      <button onclick="toggleDarkMode()" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-yellow-400 transition border border-slate-700/50">
-        <i id="theme-icon" class="fas fa-moon text-sm"></i>
-      </button>
-    </div>
+    
+    <button onclick="toggleAiChat()" class="flex items-center space-x-2 bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/30 text-purple-300 text-xs px-3.5 py-2 rounded-xl transition duration-200">
+      <i class="fas fa-wand-magic-sparkles text-pink-400 animate-pulse"></i>
+      <span class="font-semibold">AI Asistan</span>
+    </button>
   </nav>
 
-  <!-- ANA ALAN (Bento Izgarası) -->
-  <main class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-6">
+  <!-- ANA ALAN -->
+  <main class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
     
-    <!-- SOL SÜTUN (4 Kolon): Profil, Yetenekler, Motivasyon & Ziyaretçi Defteri -->
+    <!-- SOL KOLON: O Sevdiğin Tatlı Profil & Motivasyon Alanı (4 Kolon) -->
     <div class="lg:col-span-4 space-y-6">
       
-      <!-- 1. Profil Kartı (O Sevdiğin Tatlış Pixel Avatar) -->
-      <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-6 flex flex-col items-center text-center shadow-xl relative overflow-hidden group">
-        <div class="absolute -top-12 -left-12 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl"></div>
+      <!-- Profil Kartı (Pixel Avatar) -->
+      <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/90 rounded-3xl p-6 flex flex-col items-center text-center shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-12 -right-12 w-28 h-28 bg-purple-500/10 rounded-full blur-2xl"></div>
         <div class="relative w-28 h-28 mb-4 rounded-full p-1 bg-gradient-to-tr from-purple-500 via-pink-500 to-indigo-500 shadow-lg shadow-pink-500/20">
-          <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Ceren" class="rounded-full bg-slate-900 w-full h-full object-cover" alt="Ceren Avatar">
+          <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Ceren" class="rounded-full bg-slate-900 w-full h-full" alt="Ceren Avatar">
         </div>
-        <h1 class="text-xl font-bold text-white tracking-tight">Ceren Şengüler</h1>
-        <p class="text-xs font-semibold text-purple-400 mt-1 mb-3">Geleceğin Geliştiricisi ✨</p>
-        <p class="text-slate-400 text-xs px-2 mb-5 leading-relaxed">
-          Yeni teknolojiler öğreniyor, derslerimi planlıyor ve dijital evrenimi inşa ediyorum! 🌸
-        </p>
+        <h1 class="text-xl font-bold text-white mb-1">Ceren Şengüler</h1>
+        <p class="text-pink-400 text-xs font-semibold px-3 py-1 bg-pink-500/10 rounded-full border border-pink-500/20 mb-3">Geleceğin Geliştiricisi ✨</p>
+        <p class="text-slate-400 text-xs leading-relaxed mb-5">Veriler, kodlar, kahve ve yeni projeler... Kendi dijital dünyamı inşa ediyorum! 🚀</p>
         
         <!-- Sosyal Linkler -->
         <div class="flex space-x-3 mb-4">
-          <a href="https://github.com/Ceren-senguler" target="_blank" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-purple-600 flex items-center justify-center text-slate-300 hover:text-white transition border border-slate-700/60">
-            <i class="fab fa-github text-sm"></i>
+          <a href="https://github.com/Ceren-senguler" target="_blank" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-purple-600 flex items-center justify-center text-slate-300 hover:text-white transition">
+            <i class="fab fa-github"></i>
           </a>
-          <a href="#" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-pink-600 flex items-center justify-center text-slate-300 hover:text-white transition border border-slate-700/60">
-            <i class="fab fa-instagram text-sm"></i>
+          <a href="#" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-pink-600 flex items-center justify-center text-slate-300 hover:text-white transition">
+            <i class="fab fa-instagram"></i>
           </a>
-          <a href="#" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition border border-slate-700/60">
-            <i class="fab fa-linkedin text-sm"></i>
+          <a href="#" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-blue-600 flex items-center justify-center text-slate-300 hover:text-white transition">
+            <i class="fab fa-linkedin-in"></i>
           </a>
         </div>
 
-        <!-- Yetenek Rozetleri -->
-        <div class="flex flex-wrap justify-center gap-1.5 w-full pt-2 border-t border-slate-800/80">
+        <!-- Rozetler -->
+        <div class="flex flex-wrap justify-center gap-1.5 w-full pt-3 border-t border-slate-800/80">
           <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20">HTML5</span>
           <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">CSS3</span>
-          <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">JS</span>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">JavaScript</span>
           <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20">GitHub</span>
         </div>
       </div>
 
-      <!-- 2. Günün Motivasyonu Kutusu (Söz Üretici) -->
-      <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-5 shadow-xl relative">
+      <!-- Günün Motivasyonu Kartı -->
+      <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/90 rounded-3xl p-5 shadow-xl">
         <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-bold text-pink-400 flex items-center space-x-1.5">
-            <i class="fas fa-heart"></i>
-            <span>Günün Işıltısı</span>
+          <span class="text-xs font-bold text-pink-400 flex items-center gap-1.5">
+            <i class="fas fa-heart text-pink-500"></i> Günün Motivasyonu
           </span>
-          <button onclick="yeniSozUret()" class="text-[11px] bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-semibold py-1 px-2.5 rounded-lg border border-pink-500/30 transition flex items-center space-x-1">
-            <span>Söz Değiştir</span>
-            <i class="fas fa-sync-alt text-[9px]"></i>
+          <button onclick="yeniSozUret()" class="text-[11px] bg-pink-500/20 hover:bg-pink-500/30 text-pink-300 font-medium py-1 px-2.5 rounded-lg border border-pink-500/30 transition">
+            Yenile <i class="fas fa-sync-alt ml-1 text-[9px]"></i>
           </button>
         </div>
-        <p id="soz-yeri" class="text-slate-300 italic text-xs leading-relaxed border-l-2 border-pink-500 pl-3 py-1 transition-opacity duration-200">
+        <p id="soz-yeri" class="text-slate-300 italic text-xs leading-relaxed border-l-2 border-pink-500 pl-3 py-1">
           "Kodlamaya başlamanın sırrı, sadece başlamaktır! 🚀"
         </p>
       </div>
 
-      <!-- 3. Ziyaretçi Defteri / Minik Notlar -->
-      <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 rounded-3xl p-5 shadow-xl space-y-3">
-        <h3 class="text-xs font-bold text-white flex items-center space-x-2">
-          <i class="fas fa-pen-nib text-indigo-400"></i>
-          <span>Ziyaretçi Defteri</span>
+      <!-- Ziyaretçi Defteri Kartı -->
+      <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/90 rounded-3xl p-5 shadow-xl space-y-3">
+        <h3 class="text-xs font-bold text-white flex items-center gap-2">
+          <i class="fas fa-pen-nib text-indigo-400"></i> Ziyaretçi Defteri
         </h3>
         <div class="flex gap-2">
-          <input id="ziyaretci-input" type="text" placeholder="Tatlı bir mesaj bırak..." class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs w-full focus:outline-none focus:border-purple-500 text-white placeholder-slate-500">
-          <button onclick="ziyaretciNotEkle()" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white font-semibold px-3 py-2 rounded-xl text-xs transition">
+          <input id="ziyaretci-input" type="text" placeholder="Tatlı bir not bırak..." class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs w-full focus:outline-none focus:border-purple-500 text-white placeholder-slate-500">
+          <button onclick="ziyaretciNotEkle()" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white px-3 py-2 rounded-xl text-xs transition">
             <i class="fas fa-paper-plane"></i>
           </button>
         </div>
@@ -118,124 +100,510 @@
 
     </div>
 
-    <!-- SAĞ SÜTUN (8 Kolon): Ders Takvimi, Notlarım ve Çalışmalarım Sekmeleri -->
+    <!-- SAĞ KOLON: Sekmeler (Dersler, Notlar, Projeler) (8 Kolon) -->
     <div class="lg:col-span-8 space-y-6">
       
       <!-- Sekme Butonları -->
-      <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 p-1.5 rounded-2xl flex space-x-2">
-        <button onclick="sekmeSec('program')" id="btn-tab-program" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md">
-          <i class="fas fa-calendar-alt"></i>
-          <span>Ders Programı</span>
+      <div class="flex items-center space-x-2 bg-slate-900/60 border border-slate-800/90 p-1.5 rounded-2xl overflow-x-auto text-xs">
+        <button onclick="sekmeSec('program')" id="tab-btn-program" class="tab-btn px-4 py-2.5 rounded-xl font-bold bg-purple-600 text-white shadow-lg transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fas fa-calendar-day"></i> Ders Programım
         </button>
-        <button onclick="sekmeSec('notlar')" id="btn-tab-notlar" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 text-slate-400 hover:text-white">
-          <i class="fas fa-sticky-note"></i>
-          <span>Ders Notları</span>
+        <button onclick="sekmeSec('notlar')" id="tab-btn-notlar" class="tab-btn px-4 py-2.5 rounded-xl font-semibold text-slate-400 hover:text-white transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fas fa-feather"></i> Notlarım
         </button>
-        <button onclick="sekmeSec('projeler')" id="btn-tab-projeler" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 text-slate-400 hover:text-white">
-          <i class="fas fa-folder"></i>
-          <span>Çalışmalarım & Projeler</span>
+        <button onclick="sekmeSec('projeler')" id="tab-btn-projeler" class="tab-btn px-4 py-2.5 rounded-xl font-semibold text-slate-400 hover:text-white transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fas fa-folder-open"></i> Çalışmalarım & Linkler
         </button>
       </div>
 
-      <!-- 1. SEKME İÇERİĞİ: HAFTALIK DERS TAKVİMİ -->
-      <div id="panel-program" class="space-y-4">
-        <!-- Gün Seçici Butonlar -->
-        <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-900/40 p-2 rounded-2xl border border-slate-800/60">
-          <div class="flex space-x-1.5" id="gun-cubugu">
-            <button onclick="gunDegistir('Pazartesi')" class="gun-secici px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-600 text-white shadow">Pzt</button>
-            <button onclick="gunDegistir('Salı')" class="gun-secici px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white">Sal</button>
-            <button onclick="gunDegistir('Çarşamba')" class="gun-secici px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white">Çar</button>
-            <button onclick="gunDegistir('Perşembe')" class="gun-secici px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white">Per</button>
-            <button onclick="gunDegistir('Cuma')" class="gun-secici px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white">Cum</button>
+      <!-- 1. SEKME: DERS PROGRAMI -->
+      <div id="tab-program" class="space-y-4">
+        <!-- Gün Seçici & Ders Ekle Butonu -->
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/40 p-2 rounded-2xl border border-slate-800/60">
+          <div class="flex space-x-1.5" id="gun-butonlari">
+            <button onclick="gunSec('Pazartesi')" class="gun-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-purple-600 text-white">Pzt</button>
+            <button onclick="gunSec('Salı')" class="gun-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white">Sal</button>
+            <button onclick="gunSec('Çarşamba')" class="gun-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white">Çar</button>
+            <button onclick="gunSec('Perşembe')" class="gun-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white">Per</button>
+            <button onclick="gunSec('Cuma')" class="gun-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white">Cum</button>
           </div>
-          <button onclick="modalAc('modal-ders')" class="text-xs bg-slate-800 hover:bg-slate-700 text-purple-300 border border-purple-500/30 px-3 py-1.5 rounded-xl font-medium flex items-center space-x-1.5 transition">
-            <i class="fas fa-plus text-[10px]"></i>
-            <span>Ders Ekle</span>
+          <button onclick="modalAc('modal-ders')" class="text-xs bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
+            <i class="fas fa-plus text-[10px]"></i> Manuel Ekle
           </button>
         </div>
 
-        <!-- Ders Kartları -->
-        <div id="ders-kartlari" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-          <!-- JS ile render edilir -->
+        <!-- Ders Listesi Kartları -->
+        <div id="ders-listesi" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- JS ile dolacak -->
         </div>
       </div>
 
-      <!-- 2. SEKME İÇERİĞİ: DERS NOTLARI -->
-      <div id="panel-notlar" class="hidden space-y-4">
+      <!-- 2. SEKME: DERS NOTLARI -->
+      <div id="tab-notlar" class="hidden space-y-4">
         <div class="flex justify-between items-center bg-slate-900/40 p-3 rounded-2xl border border-slate-800/60">
-          <span class="text-xs text-slate-400">Vizeler, finaller ve önemli özetlerin 📝</span>
-          <button onclick="modalAc('modal-not')" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-xl font-semibold flex items-center space-x-1.5 transition">
-            <i class="fas fa-plus text-[10px]"></i>
-            <span>Not Yaz</span>
+          <span class="text-xs text-slate-400">Vizeler, finaller ve önemli özetler 📝</span>
+          <button onclick="modalAc('modal-not')" class="text-xs bg-pink-600/20 hover:bg-pink-600/30 text-pink-300 border border-pink-500/30 font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
+            <i class="fas fa-plus text-[10px]"></i> Not Ekle
           </button>
         </div>
-        <div id="not-kartlari" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-          <!-- JS ile render edilir -->
+        <div id="not-listesi" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- JS ile dolacak -->
         </div>
       </div>
 
-      <!-- 3. SEKME İÇERİĞİ: ÇALIŞMALAR & PROJELER -->
-      <div id="panel-projeler" class="hidden space-y-4">
+      <!-- 3. SEKME: ÇALIŞMALAR & PROJELER -->
+      <div id="tab-projeler" class="hidden space-y-4">
         <div class="flex justify-between items-center bg-slate-900/40 p-3 rounded-2xl border border-slate-800/60">
-          <span class="text-xs text-slate-400">Kod depoların, sunumların ve linklerin 🚀</span>
-          <button onclick="modalAc('modal-proje')" class="text-xs bg-pink-600 hover:bg-pink-500 text-white px-3 py-1.5 rounded-xl font-semibold flex items-center space-x-1.5 transition">
-            <i class="fas fa-plus text-[10px]"></i>
-            <span>Proje Ekle</span>
+          <span class="text-xs text-slate-400">Kod depoların, sunumların ve linklerin 💻</span>
+          <button onclick="modalAc('modal-proje')" class="text-xs bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 font-semibold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5">
+            <i class="fas fa-plus text-[10px]"></i> Link Ekle
           </button>
         </div>
-        <div id="proje-kartlari" class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-          <!-- JS ile render edilir -->
+        <div id="proje-listesi" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- JS ile dolacak -->
         </div>
       </div>
 
     </div>
   </main>
 
-  <!-- SAĞ ALT KÖŞE: AKILLI & TATLI AI CHATBOT -->
+  <!-- SAĞ ALT KÖŞE: AKILLI & TATLI AI COPILOT -->
   <div class="fixed bottom-6 right-6 z-50">
-    <!-- Pırıltılı Balon Buton -->
-    <button onclick="aiPencereToggle()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-500 via-purple-600 to-indigo-600 text-white shadow-2xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition shadow-purple-500/40 group">
-      <i class="fas fa-wand-magic-sparkles group-hover:rotate-12 transition"></i>
+    <!-- Yuvarlak Parlayan Sihirli Buton -->
+    <button onclick="toggleAiChat()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-pink-500 via-purple-600 to-indigo-600 text-white shadow-2xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all shadow-purple-500/40">
+      <i class="fas fa-wand-magic-sparkles"></i>
     </button>
 
     <!-- AI Chat Penceresi -->
-    <div id="ai-chat-kutusu" class="hidden absolute bottom-16 right-0 w-[340px] sm:w-[380px] h-[480px] bg-slate-900/95 backdrop-blur-2xl border border-purple-500/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+    <div id="ai-chat-window" class="hidden absolute bottom-16 right-0 w-[340px] sm:w-[380px] h-[480px] bg-slate-900/95 border border-purple-500/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden backdrop-blur-2xl">
       <!-- Chat Header -->
-      <div class="bg-gradient-to-r from-purple-900/60 to-pink-900/40 px-4 py-3.5 border-b border-slate-800 flex items-center justify-between">
+      <div class="bg-gradient-to-r from-purple-900/60 to-pink-900/50 px-4 py-3.5 border-b border-purple-500/20 flex items-center justify-between">
         <div class="flex items-center space-x-2.5">
-          <div class="w-7 h-7 rounded-xl bg-purple-500/30 text-purple-300 flex items-center justify-center text-xs">
-            <i class="fas fa-robot"></i>
+          <div class="w-7 h-7 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center text-xs border border-purple-500/30">
+            <i class="fas fa-sparkles"></i>
           </div>
           <div>
             <h4 class="text-xs font-bold text-white flex items-center">
-              Ceren'in AI Asistanı <span class="ml-1.5 text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded-full border border-emerald-500/30">Online</span>
+              Ceren'in AI Asistanı <span class="ml-1.5 text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded-full">Aktif</span>
             </h4>
-            <span class="text-[10px] text-purple-300/70">Ders ve notlarını bana yaz, ekleyeyim! ✨</span>
+            <span class="text-[10px] text-pink-300/80">Ders veya notunu yaz, ekleyeyim! 🌸</span>
           </div>
         </div>
-        <button onclick="aiPencereToggle()" class="text-slate-400 hover:text-white text-xs p-1">
-          <i class="fas fa-times"></i>
-        </button>
+        <button onclick="toggleAiChat()" class="text-slate-400 hover:text-white text-xs p-1"><i class="fas fa-times"></i></button>
       </div>
 
       <!-- Mesaj Akışı -->
-      <div id="chat-mesaj-alani" class="flex-1 p-3.5 overflow-y-auto space-y-3 text-xs custom-scroll">
+      <div id="chat-messages" class="flex-1 p-3.5 overflow-y-auto space-y-3 text-xs custom-scroll">
         <div class="flex items-start space-x-2">
-          <div class="w-6 h-6 rounded-lg bg-pink-500/20 text-pink-300 flex items-center justify-center text-[10px] mt-0.5">🌸</div>
-          <div class="bg-slate-800/90 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700/60 leading-relaxed shadow-sm">
-            Selam Ceren! Bana günlük konuşur gibi yazabilirsin. Mesela:<br><br>
-            ✨ <em>"Pazartesi saat 10:00 - 12:00 Olasılık ve İstatistik ekle Amfi 2"</em><br>
-            📝 <em>"Not ekle: Yarın algoritma ödevini teslim et"</em>
+          <div class="w-6 h-6 rounded-lg bg-pink-500/20 text-pink-300 flex items-center justify-center text-[10px] mt-0.5 border border-pink-500/30">✨</div>
+          <div class="bg-slate-800/80 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700/60 leading-relaxed">
+            Selam Ceren! O tatlı ortamı hiç bozmadık merak etme ✨ Bana doğrudan şöyle yazabilirsin:<br><br>
+            💬 <em>"Pazartesi saat 10:00 - 12:00 Olasılık ve İstatistik ekle Amfi 2"</em><br>
+            💬 <em>"Not ekle: Sınav haftası için özet çıkar"</em>
           </div>
         </div>
       </div>
 
       <!-- Hızlı Örnek Butonlar -->
-      <div class="px-3 py-1.5 bg-slate-950/70 border-t border-slate-800/60 flex space-x-2 overflow-x-auto text-[10px] whitespace-nowrap custom-scroll">
-        <button onclick="aiHizliYaz('Pazartesi 09:00 - 11:00 Olasılık derslik B2 ekle')" class="bg-slate-800 hover:bg-purple-900/40 text-purple-300 px-2.5 py-1 rounded-lg border border-purple-500/20 transition">+ Olasılık Ekle</button>
-        <button onclick="aiHizliYaz('Salı 13:00 - 15:00 Veri Yapıları ekle')" class="bg-slate-800 hover:bg-purple-900/40 text-purple-300 px-2.5 py-1 rounded-lg border border-purple-500/20 transition">+ Veri Yapıları</button>
-        <button onclick="aiHizliYaz('Not ekle: Python veri analizi kütüphanelerini tekrar et')" class="bg-slate-800 hover:bg-pink-900/40 text-pink-300 px-2.5 py-1 rounded-lg border border-pink-500/20 transition">+ Not Ekle</button>
+      <div class="px-3 py-1.5 bg-slate-950/80 border-t border-slate-800/80 flex space-x-2 overflow-x-auto text-[10px] whitespace-nowrap custom-scroll">
+        <button onclick="hizliYaz('Pazartesi 09:00 - 11:50 Olasılık ve İstatistik ekle yer Amfi 2')" class="bg-slate-800/80 hover:bg-slate-700 text-purple-300 px-2 py-1 rounded-lg border border-purple-500/20 transition">+ İstatistik Ekle</button>
+        <button onclick="hizliYaz('Salı 13:00 - 15:00 Veri Yapıları ekle')" class="bg-slate-800/80 hover:bg-slate-700 text-pink-300 px-2 py-1 rounded-lg border border-pink-500/20 transition">+ Veri Yapıları</button>
+        <button onclick="hizliYaz('Not ekle: Python analiz kütüphanelerini tekrar et')" class="bg-slate-800/80 hover:bg-slate-700 text-indigo-300 px-2 py-1 rounded-lg border border-indigo-500/20 transition">+ Not Ekle</button>
       </div>
 
-      <!-- Input -->
-      <div class="p-3 bg-slate
+      <!-- Input Alanı -->
+      <div class="p-3 bg-slate-950/90 border-t border-slate-800/80 flex items-center gap-2">
+        <input type="text" id="ai-input" placeholder="Ders veya notunu yaz..." class="flex-1 bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-500" onkeypress="if(event.key === 'Enter') aiGonder()">
+        <button onclick="aiGonder()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white w-8 h-8 rounded-xl flex items-center justify-center transition flex-shrink-0">
+          <i class="fas fa-paper-plane text-xs"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DERS EKLE -->
+  <div id="modal-ders" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-sm p-6 space-y-3 text-xs">
+      <h3 class="text-sm font-bold text-white flex justify-between items-center mb-2">
+        <span>Yeni Ders Ekle</span>
+        <button onclick="modalKapat('modal-ders')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+      </h3>
+      <div>
+        <label class="block text-slate-400 mb-1">Ders Adı</label>
+        <input type="text" id="m-ders-ad" placeholder="Örn: Olasılık & İstatistik" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white">
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <label class="block text-slate-400 mb-1">Gün</label>
+          <select id="m-ders-gun" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white">
+            <option value="Pazartesi">Pazartesi</option>
+            <option value="Salı">Salı</option>
+            <option value="Çarşamba">Çarşamba</option>
+            <option value="Perşembe">Perşembe</option>
+            <option value="Cuma">Cuma</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-slate-400 mb-1">Saat</label>
+          <input type="text" id="m-ders-saat" placeholder="09:00 - 11:50" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white">
+        </div>
+      </div>
+      <div>
+        <label class="block text-slate-400 mb-1">Derslik / Salon</label>
+        <input type="text" id="m-ders-yer" placeholder="D-102 veya Amfi" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white">
+      </div>
+      <button onclick="manuelDersKaydet()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold py-2.5 rounded-xl transition mt-2">Kaydet</button>
+    </div>
+  </div>
+
+  <!-- MODAL: NOT EKLE -->
+  <div id="modal-not" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-sm p-6 space-y-3 text-xs">
+      <h3 class="text-sm font-bold text-white flex justify-between items-center mb-2">
+        <span>Yeni Not Ekle</span>
+        <button onclick="modalKapat('modal-not')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+      </h3>
+      <div>
+        <label class="block text-slate-400 mb-1">Başlık</label>
+        <input type="text" id="m-not-baslik" placeholder="Örn: Vize Konuları" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white">
+      </div>
+      <div>
+        <label class="block text-slate-400 mb-1">Not Detayı</label>
+        <textarea id="m-not-detay" rows="3" placeholder="Önemli formüller veya ödevler..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white"></textarea>
+      </div>
+      <button onclick="manuelNotKaydet()" class="w-full bg-pink-600 text-white font-semibold py-2.5 rounded-xl transition mt-2">Kaydet</button>
+    </div>
+  </div>
+
+  <!-- MODAL: PROJE / LİNK EKLE -->
+  <div id="modal-proje" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-sm p-6 space-y-3 text-xs">
+      <h3 class="text-sm font-bold text-white flex justify-between items-center mb-2">
+        <span>Yeni Proje / Link Ekle</span>
+        <button onclick="modalKapat('modal-proje')" class="text-slate-400 hover:text-white"><i class="fas fa-times"></i></button>
+      </h3>
+      <div>
+        <label class="block text-slate-400 mb-1">Proje Başlığı</label>
+        <input type="text" id="m-proje-baslik" placeholder="Örn: Veri Analizi Projesi" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white">
+      </div>
+      <div>
+        <label class="block text-slate-400 mb-1">Açıklama</label>
+        <input type="text" id="m-proje-aciklama" placeholder="Örn: Python & Pandas ile veri temizleme" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white">
+      </div>
+      <div>
+        <label class="block text-slate-400 mb-1">Bağlantı Linki (URL)</label>
+        <input type="text" id="m-proje-link" placeholder="https://github.com/..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-white">
+      </div>
+      <button onclick="manuelProjeKaydet()" class="w-full bg-indigo-600 text-white font-semibold py-2.5 rounded-xl transition mt-2">Kaydet</button>
+    </div>
+  </div>
+
+  <footer class="text-center py-8 text-xs text-slate-600">
+    <p>© 2026 Ceren Şengüler. Sevgiyle & kodla tasarlandı 🔮</p>
+  </footer>
+
+  <!-- TÜM ÇALIŞMA MANTIĞI & JAVASCRIPT -->
+  <script>
+    // 1. Motivasyon Kutusu
+    const sozler = [
+      "Kodlamaya başlamanın sırrı, sadece başlamaktır! 🚀",
+      "Bugün yazdığın her satır kod, seni hedeflerine bir adım daha yaklaştırır. ✨",
+      "Hata yapmaktan korkma (error'lar candır!), her hata yeni bir tecrübedir. 💡",
+      "Geleceğin en başarılı projeleri, sabırla atılan küçük adımlarla başlar. 🌸",
+      "GitHub senin dijital atölyendir, üretmeye devam et! 💻"
+    ];
+    function yeniSozUret() {
+      const soz = sozler[Math.floor(Math.random() * sozler.length)];
+      const el = document.getElementById("soz-yeri");
+      el.style.opacity = 0;
+      setTimeout(() => { el.innerText = `"${soz}"`; el.style.opacity = 1; }, 150);
+    }
+
+    // 2. Hafıza & Başlangıç Verileri (LocalStorage)
+    let aktifGun = 'Pazartesi';
+
+    let dersler = JSON.parse(localStorage.getItem('ceren_dersler')) || [
+      { id: 1, gun: 'Pazartesi', ad: 'Olasılık & İstatistik', saat: '09:00 - 11:50', yer: 'Amfi 2' },
+      { id: 2, gun: 'Salı', ad: 'Veri Yapıları', saat: '13:00 - 14:50', yer: 'Lab 1' }
+    ];
+
+    let notlar = JSON.parse(localStorage.getItem('ceren_notlar_liste')) || [
+      { id: 1, baslik: 'Olasılık Vize Konuları', detay: 'Bayes Teoremi ve Dağılımlara tekrar bakılacak.', tarih: 'Bugün' }
+    ];
+
+    let ziyaretciNotlari = JSON.parse(localStorage.getItem('ceren_ziyaretci')) || [
+      { text: "Siten harika olmuş Ceren! Bol başarılar ✨", tarih: "Şimdi" }
+    ];
+
+    let projeler = JSON.parse(localStorage.getItem('ceren_projeler')) || [
+      { id: 1, baslik: 'Kişisel Hub', aciklama: 'GitHub Pages üzerindeki dijital alanım.', link: 'https://github.com/Ceren-senguler' }
+    ];
+
+    function tumunuKaydet() {
+      localStorage.setItem('ceren_dersler', JSON.stringify(dersler));
+      localStorage.setItem('ceren_notlar_liste', JSON.stringify(notlar));
+      localStorage.setItem('ceren_ziyaretci', JSON.stringify(ziyaretciNotlari));
+      localStorage.setItem('ceren_projeler', JSON.stringify(projeler));
+      renderDersler();
+      renderNotlar();
+      renderZiyaretci();
+      renderProjeler();
+    }
+
+    // 3. Sekme Değişimi
+    function sekmeSec(ad) {
+      ['program', 'notlar', 'projeler'].forEach(s => {
+        document.getElementById(`tab-${s}`).classList.add('hidden');
+        document.getElementById(`tab-btn-${s}`).className = "tab-btn px-4 py-2.5 rounded-xl font-semibold text-slate-400 hover:text-white transition flex items-center gap-2 whitespace-nowrap";
+      });
+      document.getElementById(`tab-${ad}`).classList.remove('hidden');
+      document.getElementById(`tab-btn-${ad}`).className = "tab-btn px-4 py-2.5 rounded-xl font-bold bg-purple-600 text-white shadow-lg transition flex items-center gap-2 whitespace-nowrap";
+    }
+
+    // 4. Gün Seçimi & Ders Render
+    function gunSec(gun) {
+      aktifGun = gun;
+      document.querySelectorAll('.gun-btn').forEach(b => {
+        b.className = (b.innerText === gun.substring(0,3)) 
+          ? "gun-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-purple-600 text-white" 
+          : "gun-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white";
+      });
+      renderDersler();
+    }
+
+    function renderDersler() {
+      const c = document.getElementById('ders-listesi');
+      c.innerHTML = '';
+      const bugunDersler = dersler.filter(d => d.gun.toLowerCase() === aktifGun.toLowerCase());
+
+      if (bugunDersler.length === 0) {
+        c.innerHTML = `<div class="col-span-full py-10 text-center text-slate-500 text-xs bg-slate-900/40 rounded-2xl border border-slate-800">Bu gün için ders görünmüyor. AI Asistanı'na yazarak hemen ekleyebilirsin! ✨</div>`;
+        return;
+      }
+
+      bugunDersler.forEach(d => {
+        const div = document.createElement('div');
+        div.className = "bg-slate-900/70 border border-slate-800 rounded-2xl p-4 relative group hover:border-purple-500/40 transition";
+        div.innerHTML = `
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-purple-500/10 text-purple-300 border border-purple-500/20">${d.saat}</span>
+            <button onclick="dersSil(${d.id})" class="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition text-xs"><i class="fas fa-trash"></i></button>
+          </div>
+          <h4 class="font-bold text-white text-xs mb-1.5">${d.ad}</h4>
+          <p class="text-[11px] text-slate-400 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-pink-400"></i> ${d.yer || 'Derslik'}</p>
+        `;
+        c.appendChild(div);
+      });
+    }
+
+    function dersSil(id) {
+      dersler = dersler.filter(d => d.id !== id);
+      tumunuKaydet();
+    }
+
+    // 5. Notlar & Ziyaretçi Defteri & Projeler
+    function renderNotlar() {
+      const c = document.getElementById('not-listesi');
+      c.innerHTML = '';
+      notlar.forEach(n => {
+        const div = document.createElement('div');
+        div.className = "bg-slate-900/70 border border-slate-800 rounded-2xl p-4 relative group hover:border-pink-500/40 transition";
+        div.innerHTML = `
+          <div class="flex justify-between items-center mb-1.5">
+            <h4 class="font-bold text-white text-xs">${n.baslik}</h4>
+            <button onclick="notSil(${n.id})" class="text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition text-xs"><i class="fas fa-trash"></i></button>
+          </div>
+          <p class="text-slate-300 text-xs leading-relaxed mb-2">${n.detay}</p>
+          <span class="text-[10px] text-slate-500">${n.tarih}</span>
+        `;
+        c.appendChild(div);
+      });
+    }
+
+    function notSil(id) {
+      notlar = notlar.filter(n => n.id !== id);
+      tumunuKaydet();
+    }
+
+    function renderZiyaretci() {
+      const c = document.getElementById('ziyaretci-notlari');
+      c.innerHTML = '';
+      ziyaretciNotlari.forEach(z => {
+        const div = document.createElement('div');
+        div.className = "bg-slate-950/60 border border-slate-800/80 rounded-xl p-2.5 text-xs text-slate-300 flex justify-between items-center";
+        div.innerHTML = `<span>${z.text}</span><span class="text-[9px] text-slate-500">${z.tarih}</span>`;
+        c.appendChild(div);
+      });
+    }
+
+    function ziyaretciNotEkle() {
+      const input = document.getElementById('ziyaretci-input');
+      const text = input.value.trim();
+      if (text) {
+        ziyaretciNotlari.unshift({ text, tarih: 'Şimdi' });
+        input.value = '';
+        tumunuKaydet();
+      }
+    }
+
+    function renderProjeler() {
+      const c = document.getElementById('proje-listesi');
+      c.innerHTML = '';
+      projeler.forEach(p => {
+        const div = document.createElement('div');
+        div.className = "bg-slate-900/70 border border-slate-800 rounded-2xl p-4 hover:border-indigo-500/40 transition";
+        div.innerHTML = `
+          <h4 class="font-bold text-white text-xs mb-1">${p.baslik}</h4>
+          <p class="text-slate-400 text-xs mb-3">${p.aciklama}</p>
+          <a href="${p.link}" target="_blank" class="text-purple-400 hover:text-pink-300 text-xs font-semibold flex items-center gap-1">Bağlantıyı Aç <i class="fas fa-arrow-right text-[10px]"></i></a>
+        `;
+        c.appendChild(div);
+      });
+    }
+
+    // Modal Fonksiyonları
+    function modalAc(id) { document.getElementById(id).classList.replace('hidden', 'flex'); }
+    function modalKapat(id) { document.getElementById(id).classList.replace('flex', 'hidden'); }
+
+    function manuelDersKaydet() {
+      const ad = document.getElementById('m-ders-ad').value;
+      const gun = document.getElementById('m-ders-gun').value;
+      const saat = document.getElementById('m-ders-saat').value || '10:00 - 12:00';
+      const yer = document.getElementById('m-ders-yer').value || 'Derslik';
+      if (ad) {
+        dersler.push({ id: Date.now(), gun, ad, saat, yer });
+        tumunuKaydet();
+        modalKapat('modal-ders');
+        document.getElementById('m-ders-ad').value = '';
+      }
+    }
+
+    function manuelNotKaydet() {
+      const baslik = document.getElementById('m-not-baslik').value;
+      const detay = document.getElementById('m-not-detay').value;
+      if (baslik && detay) {
+        notlar.unshift({ id: Date.now(), baslik, detay, tarih: 'Bugün' });
+        tumunuKaydet();
+        modalKapat('modal-not');
+        document.getElementById('m-not-baslik').value = '';
+        document.getElementById('m-not-detay').value = '';
+      }
+    }
+
+    function manuelProjeKaydet() {
+      const baslik = document.getElementById('m-proje-baslik').value;
+      const aciklama = document.getElementById('m-proje-aciklama').value;
+      const link = document.getElementById('m-proje-link').value || '#';
+      if (baslik) {
+        projeler.unshift({ id: Date.now(), baslik, aciklama, link });
+        tumunuKaydet();
+        modalKapat('modal-proje');
+        document.getElementById('m-proje-baslik').value = '';
+        document.getElementById('m-proje-aciklama').value = '';
+        document.getElementById('m-proje-link').value = '';
+      }
+    }
+
+    // 6. AI Asistanı & Sohbet
+    function toggleAiChat() {
+      document.getElementById('ai-chat-window').classList.toggle('hidden');
+    }
+
+    function hizliYaz(text) {
+      document.getElementById('ai-input').value = text;
+      aiGonder();
+    }
+
+    function chatMesajBas(kim, txt) {
+      const c = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = (kim === 'user') ? "flex items-start space-x-2 justify-end" : "flex items-start space-x-2";
+      if (kim === 'user') {
+        div.innerHTML = `<div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] leading-relaxed">${txt}</div>`;
+      } else {
+        div.innerHTML = `
+          <div class="w-6 h-6 rounded-lg bg-pink-500/20 text-pink-300 flex items-center justify-center text-[10px] mt-0.5 border border-pink-500/30">✨</div>
+          <div class="bg-slate-800/80 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700/60 max-w-[85%] leading-relaxed">${txt}</div>
+        `;
+      }
+      c.appendChild(div);
+      c.scrollTop = c.scrollHeight;
+    }
+
+    function aiGonder() {
+      const inp = document.getElementById('ai-input');
+      const txt = inp.value.trim();
+      if (!txt) return;
+      chatMesajBas('user', txt);
+      inp.value = '';
+
+      setTimeout(() => {
+        aiIsle(txt);
+      }, 350);
+    }
+
+    function aiIsle(metin) {
+      const t = metin.toLowerCase();
+
+      // Not ekleme komutu
+      if (t.includes('not ekle') || t.startsWith('not:')) {
+        const icerik = metin.replace(/not ekle:?/i, '').replace(/not:?/i, '').trim();
+        notlar.unshift({ id: Date.now(), baslik: 'Ders Notu', detay: icerik, tarih: 'Bugün' });
+        tumunuKaydet();
+        sekmeSec('notlar');
+        chatMesajBas('ai', `📝 Notunu hemen ekledim Ceren: <strong>"${icerik}"</strong>`);
+        return;
+      }
+
+      // Gün yakalama
+      const gunler = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma'];
+      let secilenGun = null;
+      gunler.forEach(g => { if (t.includes(g.toLowerCase())) secilenGun = g; });
+
+      // Saat yakalama
+      const saatRegex = /(\d{1,2}:\d{2})\s*(?:-|ile|\/)?\s*(\d{1,2}:\d{2})?/;
+      const saatMatch = metin.match(saatRegex);
+      let saat = '10:00 - 12:00';
+      if (saatMatch) {
+        saat = saatMatch[2] ? `${saatMatch[1]} - ${saatMatch[2]}` : `${saatMatch[1]} - Saat`;
+      }
+
+      // Derslik yakalama
+      let yer = 'Derslik';
+      const yerMatch = metin.match(/(?:amfi|derslik|lab|salon)\s*([a-zA-Z0-9\-]+)/i);
+      if (yerMatch) yer = yerMatch[0];
+
+      if (secilenGun || t.includes('ders') || t.includes('ekle')) {
+        const gun = secilenGun || aktifGun;
+        let dersAd = metin
+          .replace(/(pazartesi|salı|çarşamba|perşembe|cuma)/gi, '')
+          .replace(/saat\s*\d{1,2}:\d{2}(?:\s*-\s*\d{1,2}:\d{2})?/gi, '')
+          .replace(/(?:amfi|derslik|lab|salon)\s*[a-zA-Z0-9\-]+/gi, '')
+          .replace(/(dersi|dersini|ekle|koy|yaz|yer)/gi, '')
+          .replace(/[:\-]/g, '')
+          .trim();
+
+        if (dersAd.length < 2) dersAd = 'Yeni Ders';
+
+        dersler.push({
+          id: Date.now(),
+          gun: gun,
+          ad: dersAd.charAt(0).toUpperCase() + dersAd.slice(1),
+          saat: saat,
+          yer: yer
+        });
+        tumunuKaydet();
+        sekmeSec('program');
+        gunSec(gun);
+
+        chatMesajBas('ai', `✨ Harika! <strong>${gun}</strong> gününe <strong>${dersAd}</strong> dersini (${saat}, ${yer}) programına ekledim.`);
+      } else {
+        chatMesajBas('ai', `Tam anlayamadım tatlım 🌸 Ders eklemek istersen şöyle yazabilirsin:<br><em>"Çarşamba 14:00 - 16:00 Veri Analizi derslik Amfi 1 ekle"</em>`);
+      }
+    }
+
+    // Sayfa açıldığında verileri ekrana bas
+    tumunuKaydet();
+  </script>
+</body>
+</html>
